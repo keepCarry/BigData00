@@ -1,0 +1,4 @@
+com\leopo\mr\FlowStasticsMain.class
+com\leopo\mr\FlowStatisticsReducer.class
+com\leopo\mr\FlowBean.class
+com\leopo\mr\FlowStatisticsMapper.class
