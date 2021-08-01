@@ -2,6 +2,7 @@ package com.leopo.homework.work3;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
@@ -16,6 +17,7 @@ public class HbaseOperation {
 
     /**
      * 初始化连接
+     *
      * @param zkClientPort
      * @param zkQuorum
      * @param master
@@ -30,6 +32,7 @@ public class HbaseOperation {
             System.out.println("create connection exception");
             e.printStackTrace();
         }
+        System.out.println("create connection success");
     }
 
     /**
@@ -40,14 +43,17 @@ public class HbaseOperation {
             try {
                 conn.close();
             } catch (Throwable t) {
+                System.out.println("close connection failed");
                 t.printStackTrace();
             }
+            System.out.println("close connection success");
         }
     }
 
 
     /**
      * 插入数据
+     *
      * @param tableName
      * @param rowKey
      * @param columnFamilys
@@ -69,6 +75,7 @@ public class HbaseOperation {
 
     /**
      * 删除数据
+     *
      * @param tableName
      * @param rowkey
      * @throws IOException
@@ -88,22 +95,27 @@ public class HbaseOperation {
         Get get = new Get(Bytes.toBytes(rowkey));
         Table table = conn.getTable(TableName.valueOf(tableName));
         Result result = table.get(get);
-        for (Cell kv : result.listCells()) {
-            System.out.println(
-                    rowkey + "    column=" + Bytes.toString(kv.getFamilyArray()) + ":" + Bytes.toString(kv.getQualifierArray())
-                            + "," + "timestamp=" + kv.getTimestamp() + ",value=" + Bytes.toString(kv.getValueArray()));
+        if (result == null || result.listCells() == null) {
+            System.out.println("cannot find the result");
+            return;
+        }
+
+        for (Cell cell : result.listCells()) {
+            String qualifier = new String(CellUtil.cloneQualifier(cell));
+            String value = new String(CellUtil.cloneValue(cell), "UTF-8");
+            System.out.println(qualifier + " : " + value);
         }
     }
 
 
     public static void main(String[] args) throws Exception {
-        init("2181","jikehadoop02","");
-        insertData("liupeng:student","G20200388010284","name",new String[]{"name"},new String[]{"刘澎"});
-        insertData("liupeng:student","G20200388010284","info",new String[]{"student_id","class"},new String[]{"G20200388010284","2"});
-        insertData("liupeng:student","G20200388010284","score",new String[]{"understanding","programming"},new String[]{"80","80"});
-        query("liupeng:student","G20200388010284");
-        deleteRow("liupeng:student","G20200388010284");
-        query("liupeng:student","G20200388010284");
+        init("2181", "jikehadoop02", "");
+        insertData("liupeng:student", "G20200388010284", "name", new String[]{"name"}, new String[]{"刘澎"});
+        insertData("liupeng:student", "G20200388010284", "info", new String[]{"student_id", "class"}, new String[]{"G20200388010284", "2"});
+        insertData("liupeng:student", "G20200388010284", "score", new String[]{"understanding", "programming"}, new String[]{"80", "80"});
+        query("liupeng:student", "G20200388010284");
+        deleteRow("liupeng:student", "G20200388010284");
+        query("liupeng:student", "G20200388010284");
         closeClient();
     }
 }
