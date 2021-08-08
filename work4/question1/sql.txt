@@ -1,0 +1,1 @@
+select t1.age,avg(t2.rate) from  t_user t1, t_rating t2 where t1.userid = t2.userid and t2.movieid = 2116 group by t1.age;

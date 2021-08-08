@@ -1,0 +1,105 @@
+INFO  : Compiling command(queryId=hive_20210809021542_9c361cf8-e3d6-4243-9ff8-4f441e469d9e): 
+
+select 'M',t4.moviename, t3.avgrate, t3.sum from (select  t2.movieid,avg(t2.rate) as avgrate,count(t1.userid) as sum from  t_user t1,t_rating t2 where t1.userid = t2.userid and t1.sex = 'M' group by t2.movieid) t3, t_movie t4 where t3.movieid = t4.movieid and sum >= 50 order by t3.avgrate desc limit 10
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:string, comment:null), FieldSchema(name:t4.moviename, type:string, comment:null), FieldSchema(name:t3.avgrate, type:double, comment:null), FieldSchema(name:t3.sum, type:bigint, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20210809021542_9c361cf8-e3d6-4243-9ff8-4f441e469d9e); Time taken: 0.082 seconds
+INFO  : Executing command(queryId=hive_20210809021542_9c361cf8-e3d6-4243-9ff8-4f441e469d9e): 
+
+select 'M',t4.moviename, t3.avgrate, t3.sum from (select  t2.movieid,avg(t2.rate) as avgrate,count(t1.userid) as sum from  t_user t1,t_rating t2 where t1.userid = t2.userid and t1.sex = 'M' group by t2.movieid) t3, t_movie t4 where t3.movieid = t4.movieid and sum >= 50 order by t3.avgrate desc limit 10
+WARN  : 
+INFO  : Query ID = hive_20210809021542_9c361cf8-e3d6-4243-9ff8-4f441e469d9e
+INFO  : Total jobs = 4
+INFO  : Launching Job 1 out of 4
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks not specified. Estimated from input data size: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:2
+INFO  : Submitting tokens for job: job_1628329820738_1518
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://jikehadoop02:8088/proxy/application_1628329820738_1518/
+INFO  : Starting Job = job_1628329820738_1518, Tracking URL = http://jikehadoop02:8088/proxy/application_1628329820738_1518/
+INFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/bin/hadoop job  -kill job_1628329820738_1518
+INFO  : Hadoop job information for Stage-1: number of mappers: 2; number of reducers: 1
+INFO  : 2021-08-09 02:15:52,131 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-08-09 02:15:59,310 Stage-1 map = 50%,  reduce = 0%, Cumulative CPU 2.71 sec
+INFO  : 2021-08-09 02:16:09,553 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 14.55 sec
+INFO  : 2021-08-09 02:16:18,758 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 20.29 sec
+INFO  : MapReduce Total cumulative CPU time: 20 seconds 290 msec
+INFO  : Ended Job = job_1628329820738_1518
+INFO  : Launching Job 2 out of 4
+INFO  : Starting task [Stage-2:MAPRED] in serial mode
+INFO  : Number of reduce tasks not specified. Estimated from input data size: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1628329820738_1519
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://jikehadoop02:8088/proxy/application_1628329820738_1519/
+INFO  : Starting Job = job_1628329820738_1519, Tracking URL = http://jikehadoop02:8088/proxy/application_1628329820738_1519/
+INFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/bin/hadoop job  -kill job_1628329820738_1519
+INFO  : Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+INFO  : 2021-08-09 02:16:26,790 Stage-2 map = 0%,  reduce = 0%
+INFO  : 2021-08-09 02:16:31,906 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 2.3 sec
+INFO  : 2021-08-09 02:16:38,033 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 5.55 sec
+INFO  : MapReduce Total cumulative CPU time: 5 seconds 550 msec
+INFO  : Ended Job = job_1628329820738_1519
+INFO  : Launching Job 3 out of 4
+INFO  : Starting task [Stage-3:MAPRED] in serial mode
+INFO  : Number of reduce tasks not specified. Estimated from input data size: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:2
+INFO  : Submitting tokens for job: job_1628329820738_1520
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://jikehadoop02:8088/proxy/application_1628329820738_1520/
+INFO  : Starting Job = job_1628329820738_1520, Tracking URL = http://jikehadoop02:8088/proxy/application_1628329820738_1520/
+INFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/bin/hadoop job  -kill job_1628329820738_1520
+INFO  : Hadoop job information for Stage-3: number of mappers: 2; number of reducers: 1
+INFO  : 2021-08-09 02:17:01,991 Stage-3 map = 0%,  reduce = 0%
+INFO  : 2021-08-09 02:17:09,176 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 5.42 sec
+INFO  : 2021-08-09 02:17:15,358 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 8.33 sec
+INFO  : MapReduce Total cumulative CPU time: 8 seconds 330 msec
+INFO  : Ended Job = job_1628329820738_1520
+INFO  : Launching Job 4 out of 4
+INFO  : Starting task [Stage-4:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1628329820738_1521
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://jikehadoop02:8088/proxy/application_1628329820738_1521/
+INFO  : Starting Job = job_1628329820738_1521, Tracking URL = http://jikehadoop02:8088/proxy/application_1628329820738_1521/
+INFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/hadoop/bin/hadoop job  -kill job_1628329820738_1521
+INFO  : Hadoop job information for Stage-4: number of mappers: 1; number of reducers: 1
+INFO  : 2021-08-09 02:17:36,371 Stage-4 map = 0%,  reduce = 0%
+INFO  : 2021-08-09 02:17:42,692 Stage-4 map = 100%,  reduce = 0%, Cumulative CPU 1.64 sec
+INFO  : 2021-08-09 02:17:50,090 Stage-4 map = 100%,  reduce = 100%, Cumulative CPU 3.25 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 250 msec
+INFO  : Ended Job = job_1628329820738_1521
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 2  Reduce: 1   Cumulative CPU: 20.29 sec   HDFS Read: 24747018 HDFS Write: 133190 HDFS EC Read: 0 SUCCESS
+INFO  : Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 5.55 sec   HDFS Read: 139680 HDFS Write: 68603 HDFS EC Read: 0 SUCCESS
+INFO  : Stage-Stage-3: Map: 2  Reduce: 1   Cumulative CPU: 8.33 sec   HDFS Read: 255082 HDFS Write: 118053 HDFS EC Read: 0 SUCCESS
+INFO  : Stage-Stage-4: Map: 1  Reduce: 1   Cumulative CPU: 3.25 sec   HDFS Read: 124346 HDFS Write: 753 HDFS EC Read: 0 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 37 seconds 420 msec
+INFO  : Completed executing command(queryId=hive_20210809021542_9c361cf8-e3d6-4243-9ff8-4f441e469d9e); Time taken: 129.555 seconds
+INFO  : OK

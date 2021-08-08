@@ -1,0 +1,1 @@
+select 'M',t4.moviename, t3.avgrate, t3.sum from (select  t2.movieid,avg(t2.rate) as avgrate,count(t1.userid) as sum from  t_user t1,t_rating t2 where t1.userid = t2.userid and t1.sex = 'M' group by t2.movieid) t3, t_movie t4 where t3.movieid = t4.movieid and sum >= 50 order by t3.avgrate desc limit 10;
